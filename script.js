@@ -1,49 +1,6 @@
 // Enhanced interactivity and animations
 
 document.addEventListener('DOMContentLoaded', function() {
-    const outputItems = document.querySelectorAll('.output-item');
-    
-    // Add click handlers with visual feedback
-    outputItems.forEach((item, index) => {
-        item.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Add ripple effect
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 107, 74, 0.3);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-            `;
-            
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-            
-            setTimeout(() => ripple.remove(), 600);
-            
-            // Future: Add navigation or interaction logic here
-            console.log('Clicked:', this.textContent);
-        });
-        
-        // Stagger animation on load
-        item.style.animationDelay = `${0.8 + index * 0.1}s`;
-        item.style.opacity = '0';
-        item.style.animation = 'fadeInUp 0.5s ease-out forwards';
-    });
-    
     // Add subtle parallax effect on mouse move
     let mouseX = 0;
     let mouseY = 0;
